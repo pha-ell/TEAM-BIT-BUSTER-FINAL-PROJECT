@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagitab Festival</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">  
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            padding-top: 30px;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #f18b2c;
+            margin-bottom: 30px;
+            font-family: 'Higuen', serif;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+
+        .content-wrapper {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            gap: 20px;
+            margin-top: 20px;
+            position: relative; 
+        }
+
+        .left-section {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+
+        .comments-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .left-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .left-section li {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .comment-header .date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .comment-header .stars {
+            color: #ffcc00;
+        }
+
+        .comment-form {
+            margin-top: 20px;
+            position: relative;  
+        }
+
+        .comment-form textarea, 
+        .comment-form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .comment-form button {
+            padding: 10px 20px;
+            background-color: #32cd32;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment-form button:hover {
+            background-color: #28a428;
+        }
+
+        .back-button {
+    position: fixed; /* Sticks to the top-right corner of the page */
+    top: 10px; /* Distance from the top of the viewport */
+    right: 10px; /* Distance from the right of the viewport */
+    padding: 5px 15px;
+    color: white;
+    background-color: #f15d30; /* Orange background */
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    z-index: 9999; /* Ensure it stays on top of other elements */
+}
+
+.back-button:hover {
+    background-color: #d94b1f; /* Darker orange on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+}
+
+
+
+        .carousel-container {
+            position: relative;
+            flex: 1.5;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-item {
+            flex: 0 0 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body> 
+<a href="../eventsandfestivals.html" class="back-button">← Back</a>
+
+<h1>Dagitab Festival</h1>
+
+<div class="content-wrapper">
+    <div class="left-section">
+        <div class="comments-container">
+            <ul id="commentsList">
+                <li>
+                    <div class="comment-header"></div>
+                    Celebrates Every 8th of December
+                </li>
+                <li>
+                    The Dagitab Festival, also known as the "Festival of Lights," is a grand celebration that embodies Naga City, Cebu's rapid development and reputation as the "Industrial Hub of the South." This annual event occurs every December and brings the community together to honor the city's achievements and industrial progress. It is marked by spectacular light displays that transform the city into a vibrant, glowing spectacle.   
+                    The festival's highlights include street dancing competitions, where performers clad in illuminated costumes showcase intricate choreography inspired by local culture and industrial pride. A central feature of the event is the grand showdown, a competitive display of creativity and energy among participating groups. The festival also includes evening parades with themed floats adorned in lights, accompanied by musical performances and culminates in breathtaking fireworks that light up the night sky.
+                </li>
+            </ul>
+        </div>
+
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <div class="carousel-item"><img src="images/events_1.jpg" alt="Photo 1"></div>
+                <div class="carousel-item"><img src="images/events_2.jpg" alt="Photo 2"></div>
+                <div class="carousel-item"><img src="images/events_3.jpg" alt="Photo 3"></div>
+                <div class="carousel-item"><img src="images/events_4.jpg" alt="Photo 4"></div>
+                <div class="carousel-item"><img src="images/events_5.jpg" alt="Photo 5"></div>
+                <div class="carousel-item"><img src="images/events_6.jpg" alt="Photo 6"></div>
+                <div class="carousel-item"><img src="images/events_7.jpg" alt="Photo 6"></div>
+            </div>
+            <button class="nav-button prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="nav-button next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </div>
+</div>
+    
+    
+    <script>
+        let slideIndex = 0;
+        function moveSlide(step) {
+            const slides = document.querySelectorAll('.carousel-item');
+            slideIndex += step;
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            document.querySelector('.carousel-wrapper').style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+        }
+    </script>
+</body>
+</html>
